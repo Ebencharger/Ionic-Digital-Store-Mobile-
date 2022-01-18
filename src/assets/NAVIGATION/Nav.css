@@ -1,0 +1,304 @@
+.row, .col-sm {
+  padding: 0px;
+  margin: 0px;
+}
+.row .header, .col-sm .header {
+  min-width: 100%;
+  height: 100px;
+  position: fixed;
+  top: 0px;
+  z-index: 700000;
+  border: 2px solid #2424c0;
+  background-color: white;
+}
+.row .header button, .col-sm .header button {
+  border: none;
+  background-color: transparent;
+  font-size: 16px;
+  position: relative;
+}
+.row .header button i, .col-sm .header button i {
+  font-size: 30px;
+  position: absolute;
+}
+.row .header button p, .col-sm .header button p {
+  position: absolute;
+  top: -22px;
+  left: 10px;
+}
+.row .header .img, .col-sm .header .img {
+  width: 100px;
+}
+.row .header .newnav, .col-sm .header .newnav {
+  margin-right: 40px;
+  display: flex;
+}
+.row .header .newnav button, .col-sm .header .newnav button {
+  margin-left: 100px;
+  font-size: 16px;
+  font-weight: bold;
+  transition: all 2s;
+  border: 0px;
+  background-color: transparent;
+}
+
+a {
+  text-decoration: none !important;
+  color: black !important;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.faint {
+  width: 100%;
+  height: 4600px;
+  background-color: rgba(0, 0, 0, 0.4);
+  position: absolute;
+  top: 0px;
+  display: flex;
+  justify-content: center;
+  left: 0px;
+  right: 0px;
+  z-index: 6000;
+}
+.faint .card {
+  width: 80%;
+  top: 100px;
+  position: fixed !important;
+  height: 400px !important;
+  overflow-y: scroll !important;
+  align-items: center;
+  text-align: center;
+}
+.faint .card .title {
+  text-align: center;
+  padding-top: 20px;
+  background-color: white;
+  width: 100%;
+  position: fixed;
+  top: 100px;
+  font-size: 30px;
+  font-weight: bold;
+}
+.faint .card table {
+  min-width: 100%;
+  border: 1px solid black;
+  border-collapse: collapse;
+  text-align: center;
+  margin-top: 100px;
+  margin-bottom: 40px;
+}
+.faint .card tr, .faint .card th, .faint .card td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+
+.buts {
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-bottom: 100px;
+}
+
+.grandtot {
+  font-size: 30px;
+  left: 40%;
+}
+
+form {
+  width: 40%;
+  top: 40px;
+  position: fixed;
+  height: 600px;
+  padding: 50px;
+  padding-top: 100px;
+  background-color: white;
+}
+form input {
+  min-width: 100%;
+  margin-top: 30px;
+}
+
+@media (max-width: 1366px) {
+  .v-card {
+    height: 16000px !important;
+    position: absolute !important;
+    z-index: 600000 !important;
+  }
+}
+@media (max-width: 1024px) {
+  .header .newnav {
+    width: 500px !important;
+    overflow-x: scroll;
+    margin-right: 50px !important;
+  }
+  .header .newnav button {
+    margin-left: 20px !important;
+    width: 120px;
+  }
+  .header .faint .card {
+    overflow-x: hidden !important;
+  }
+
+  .faint {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .faint .card .buts {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .v-card {
+    height: 16000px !important;
+    position: absolute !important;
+    z-index: 600000 !important;
+  }
+
+  form {
+    min-width: 50%;
+  }
+}
+@media (max-width: 823px) {
+  .buts {
+    margin-bottom: 200px !important;
+  }
+}
+@media (max-width: 768px) {
+  .header .newnav {
+    width: 300px !important;
+    overflow-x: scroll;
+    margin-right: 40px !important;
+  }
+  .header .newnav button {
+    margin-left: 20px !important;
+    width: 120px;
+  }
+
+  form {
+    width: 60%;
+    top: 25%;
+  }
+  form input {
+    min-width: 100%;
+    margin-top: 30px;
+  }
+  form button {
+    min-width: 150px !important;
+  }
+
+  .v-card {
+    height: 16000px !important;
+    position: absolute !important;
+    z-index: 600000 !important;
+  }
+}
+@media (max-width: 667px) {
+  .buts {
+    margin-bottom: 200px !important;
+  }
+}
+@media (max-width: 414px) {
+  .header .newnav {
+    width: 100px !important;
+    overflow-x: scroll;
+    margin-right: 30px;
+  }
+  .header .newnav button {
+    margin-left: 20px !important;
+    width: 120px;
+  }
+
+  .faint .card {
+    min-width: 100%;
+    margin-left: 0%;
+    height: 500px;
+    overflow-y: hidden;
+  }
+
+  .grandtot {
+    left: 15%;
+  }
+
+  form {
+    width: 100%;
+    top: 10%;
+  }
+  form input {
+    min-width: 100%;
+    margin-top: 30px;
+  }
+  form button {
+    min-width: 150px !important;
+  }
+
+  .v-card {
+    height: 16000px !important;
+    position: absolute !important;
+    z-index: 600000 !important;
+  }
+}
+@media (max-width: 411px) {
+  .header .newnav {
+    width: 100px !important;
+    overflow-x: scroll;
+    margin-right: 30px;
+  }
+  .header .newnav button {
+    margin-left: 20px !important;
+    width: 120px;
+  }
+
+  table {
+    margin-top: 130px !important;
+  }
+
+  .v-card {
+    height: 16000px !important;
+    position: absolute !important;
+    z-index: 600000 !important;
+  }
+}
+@media (max-width: 375px) {
+  .v-card {
+    position: absolute !important;
+    z-index: 600000 !important;
+  }
+}
+@media (max-width: 360px) {
+  .header .newnav {
+    width: 100px !important;
+    overflow-x: scroll;
+    margin-right: 30px;
+  }
+  .header .newnav button {
+    margin-left: 20px !important;
+    width: 120px;
+  }
+
+  .faint .v-card {
+    position: absolute !important;
+    z-index: 600000 !important;
+  }
+
+  .grandtot {
+    left: 15%;
+  }
+
+  table {
+    margin-top: 190px !important;
+    min-width: 40% !important;
+  }
+}
+@media (max-width: 320px) {
+  .header button i {
+    margin-left: -40px;
+  }
+}
+
+/*# sourceMappingURL=Nav.css.map */

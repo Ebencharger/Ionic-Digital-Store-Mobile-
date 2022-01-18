@@ -1,0 +1,43 @@
+<div class="body">
+  <h5 class="login">Sell your Product</h5>
+ <form class="form" [formGroup]="forms" novalidate (ngSubmit)="handleSubmit()">
+  <div *ngIf="success" class="successful">
+    <div>
+      <div class="mb-4 text-white">Your product sent to Client Store successfully! Check Buy from Client Page</div>
+      <button type="button" (click)="handleSuccess()">Okay</button>
+    </div>
+      </div>
+    <div *ngIf="image" class="myBox">
+      <div class="text-center">
+       <img src="" alt="" [src]="sanatizeBase64Image(picture)" onError="this.onError=null;">
+      </div>
+    </div>
+    <div *ngIf="image==false" class="myBox">
+      <span class="span">PRODUCT IMAGE:</span>
+      <div>
+        <button type="button" class=" form-control-lg btn btn-primary" placeholder="YOUR PRODUCT DETAILS" (click)="handleCamera()">CAPTION PRODUCT</button>
+        <div *ngIf="confirmImage" class="text-danger font-weight-bold">You have not caption any product!</div>
+      </div>
+    </div>
+    <div class="myBox">
+      <span class="span">PRODUCT NAME:</span>
+      <div>
+        <input type="text"  class="form-control-lg" placeholder="YOUR PRODUCT DETAILS" formControlName="productName">
+        <div *ngIf="productName?.invalid && productName?.touched" class="text-danger font-weight-bold">{{valid}}</div>
+      </div>
+    </div>
+    <div class="myBox">
+      <span class="span">PRICE ($):</span>
+      <div>
+        <input type="text" class="form-control-lg" placeholder="NUMBER ALONE" formControlName="price">
+        <div *ngIf="price?.invalid && price?.touched" class="text-danger font-weight-bold">{{valid}}</div>
+      </div>
+    </div>
+   <button [disabled]="forms?.invalid">SELL TO MARKET</button>
+   <div class="fpass" routerLink="/store">Go to Store</div>
+  <div class="create" routerLink="/client">
+    <hr>
+    <div>Not now <span>Go to Client Store Instead</span></div>
+  </div>
+ </form>
+ </div>

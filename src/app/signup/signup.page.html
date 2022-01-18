@@ -1,0 +1,54 @@
+<div class="body">
+  <h5 class="login">Create account with Digital Store</h5>
+  <p>Slide down the form for the remaining fields</p>
+ <form class="form" [formGroup]="forms" novalidate (ngSubmit)="handleSubmit()">
+  <div *ngIf="success" class="successful">
+    <div>
+      <div class="mb-4 text-white">Your form submitted successfully!</div>
+      <button (click)="handleSuccess()">Okay</button>
+    </div>
+      </div>
+   <div class="scroll">
+    <div class="myBox">
+      <span class="span">FULL NAME:</span>
+      <div>
+        <input type="text" class="form-group form-control-lg" placeholder="ENTER YOUR FULL NAME" formControlName="name">
+        <div *ngIf="name?.invalid && name?.touched" class="text-danger font-weight-bold">{{valid}}</div>
+      </div>
+    </div>
+    <div class="myBox">
+      <span class="span">EMAIL:</span>
+      <div>
+        <input type="text" class="form-group form-control-lg" placeholder="ENTER YOUR EMAIL" formControlName="email">
+        <div *ngIf="email?.invalid && email?.touched" class="text-danger font-weight-bold">{{valid}}</div>
+      </div>
+    </div>
+    <div class="myBox">
+      <span class="span">PHONE:</span>
+      <div>
+        <input type="text" class="form-group form-control-lg" placeholder="ENTER YOUR PHONE NUMBER" formControlName="phone">
+        <div *ngIf="phone?.invalid && phone?.touched" class="text-danger font-weight-bold">{{valid}}</div>
+      </div>
+    </div>
+    <div class="myBox">
+      <span class="span">LOCATION:</span>
+      <div>
+        <input type="text" class="form-group form-control-lg" placeholder="ENTER YOUR LOCATION" formControlName="location">
+        <div *ngIf="location?.invalid && location?.touched" class="text-danger font-weight-bold">{{valid}}</div>
+      </div>
+    </div>
+    <div class="myBox">
+      <span class="span">PASSWORD:</span>
+      <div>
+        <input type="text" class="form-group form-control-lg" placeholder="8-30 characters" formControlName="password">
+        <div *ngIf="password?.invalid && password?.touched" class="text-danger font-weight-bold">{{valid}}</div>
+      </div>
+    </div>
+   </div>
+   <button [disabled]="forms?.invalid">LOGIN</button>
+  <div class="create" routerLink="/login">
+    <hr>
+    <div>Already have account? <span>Sign into Digital Store</span></div>
+  </div>
+ </form>
+ </div>

@@ -1,0 +1,38 @@
+<div class="home">
+ <div class="header">
+  <button (click)="handleToggle()" class="button1"><i class="fa fa-bars text-primary"></i></button>
+  <button routerLink="/cart" class="button2"><i class="fa fa-cart-plus text-primary"></i><h5>{{service.cart.length}}</h5></button>
+ </div>
+  <div *ngIf="menu" class="menu">
+    <div (click)="handleRoute(i)" *ngFor="let store of service.myStore; let i=index">
+     {{store}}
+    </div>
+    <div routerLink="/home">HOME</div>
+  </div>
+  <div class="headerTwo">
+    <div *ngFor="let product of store; let i=index">
+      <button (click)="handleProduct(i)">{{product.type}}</button>
+    </div>
+  </div>
+
+  <div class="body">
+    <div class="holder" *ngFor="let pro of store[myIndex].model; let i=index">
+      <button class="btn btn-danger myBtn" (click)="handleCart(i)"><i class="fa fa-cart-plus"></i></button>
+      <button class="btn btn-danger myPrice">{{pro.price | currency}}</button>
+      <img src={{pro.img}} alt="">
+      <button class="cart" (click)="handleInfo(i)">MORE INFO</button>
+    </div>
+  </div>
+
+  <div *ngIf="detail" class="detail">
+    <span>Below are the details of the Product</span>
+   <div><h5>PRODUCT: {{service.myStore[storeIndex]}}</h5></div>
+   <div><h5>PRODUCT NAME: {{store[myIndex].type}}</h5></div>
+   <div><h5>PRODUCT MODEL: {{store[myIndex].model[info].phone}}</h5></div>
+   <div><h5>PRODUCT PRICE: {{store[myIndex].model[info].price | currency}}</h5></div>
+   <div><h5><img src={{store[myIndex].model[info].img}} alt=""></h5></div>
+   <div><button (click)="handleOkay()">OKAY</button></div>
+
+  </div>
+
+</div>

@@ -1,0 +1,37 @@
+<div class="home">
+  <div class="header">
+   <div>
+    <button routerLink="/home" class="button1">HOME</button>
+   </div>
+   <div>
+    <button routerLink="/store" class="button2">STORE</button>
+   </div>
+   <div>
+    <button routerLink="/client" class="button2">CLIENT</button>
+   </div>
+  </div>
+
+   <div class="body">
+    <table *ngIf="service.transaction.length!=0">
+      <th>S/N</th>
+      <th>PRODUCT</th>
+      <th>PRICE</th>
+      <th>TIME</th>
+      <th>STATUS</th>
+      <tr *ngFor="let product of service.transaction; let i=index">
+       <td>{{i+1}}</td>
+       <td>{{product.phone}}</td>
+       <td>{{product.price | currency}}</td>
+       <td class="action">
+        {{product.date}}
+       </td>
+       <td class="action">
+        {{product.status}}
+       </td>
+      </tr>
+    </table>
+   </div>
+  
+ 
+ </div>
+ 

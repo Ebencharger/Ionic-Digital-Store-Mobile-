@@ -1,20 +1,21 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+<div class="home">
+<img src="../../assets/un.png" alt="">
+<div class="tag">
+  <div class="mytext">
+    <p>You can get any digital device and home Appliance on</p>
   </div>
-</ion-content>
+  <div class="title">
+  <h1 class="text-primary">DIGITAL STORE</h1>
+  </div>
+</div>
+<button (click)="handleToggle()"><i class="fa fa-bars text-primary"></i></button>
+<div *ngIf="menu" class="menu">
+  <div routerLink="/sell">SELL YOUR PRODUCT</div>
+  <div routerLink="/store">GO TO STORE</div>
+  <div routerLink="/client">BUY FROM CLIENT</div>
+  <div routerLink="/cart">MY CART</div>
+  <div routerLink="/transaction">MY TRANSACTION</div>
+  <div routerLink="/help">CONTACT ADMIN FOR HELP</div>
+  <div routerLink="/login">LOG OUT</div>
+</div>
+</div>

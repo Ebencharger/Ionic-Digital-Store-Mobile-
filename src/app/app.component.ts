@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { NativeStorage } from '@ionic-native/native-storage/ngx';
+import { MyserviceService } from './myservice.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,12 @@ import { Component } from '@angular/core';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
-  constructor() {}
+  constructor(private nativeStorage: NativeStorage, public service: MyserviceService) {
+    
+  }
+
+  ngOnInit() {
+    
+  }
 }
+

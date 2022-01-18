@@ -1,0 +1,32 @@
+<div class="body">
+  <h5 class="login">Reset Password</h5>
+ <form class="form" [formGroup]="forms" novalidate (ngSubmit)="handleSubmit()">
+  <div *ngIf="success" class="successful">
+    <div>
+      <div class="mb-4 text-white">Your password reset successfully! Check your email</div>
+      <button (click)="handleSuccess()">Okay</button>
+    </div>
+      </div>
+    <div class="myBox">
+      <span class="span">NEW PASSWORD:</span>
+      <div>
+        <input type="text" (click)="handlemySet()" class="form-group form-control-lg" placeholder="8-30 characters" formControlName="password">
+        <div *ngIf="password?.invalid && password?.touched" class="text-danger font-weight-bold">{{valid}}</div>
+        <div *ngIf="invalid" class="text-danger font-weight-bold">Password did not match</div>
+      </div>
+    </div>
+    <div class="myBox">
+      <span class="span">RETYPE PASSWORD:</span>
+      <div>
+        <input type="text" (click)="handlemySet()" class="form-group form-control-lg" placeholder="8-30 characters" formControlName="cpassword">
+        <div *ngIf="invalid" class="text-danger font-weight-bold">Password did not match</div>
+      </div>
+    </div>
+   <button [disabled]="forms?.invalid">Reset</button>
+   <div class="fpass" routerLink="/signup">Create account</div>
+  <div class="create" routerLink="/login">
+    <hr>
+    <div>Already have account? <span>Sign into Digital Store</span></div>
+  </div>
+ </form>
+ </div>

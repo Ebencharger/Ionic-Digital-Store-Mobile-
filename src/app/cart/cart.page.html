@@ -1,0 +1,60 @@
+<div class="home">
+  <div class="header">
+   <div>
+    <button routerLink="/home" class="button1">HOME</button>
+   </div>
+   <div>
+    <button routerLink="/store" class="button2">STORE</button>
+   </div>
+   <div>
+    <button routerLink="/client" class="button2">CLIENT</button>
+   </div>
+  </div>
+
+   <div class="body">
+    <table *ngIf="service.cart.length!=0">
+      <th>S/N</th>
+      <th>PRODUCT</th>
+      <th>PRICE</th>
+      <th>ACTION</th>
+      <tr *ngFor="let product of service.cart; let i=index">
+       <td>{{i+1}}</td>
+       <td>{{product.phone}}</td>
+       <td>{{product.price | currency}}</td>
+       <td class="action">
+         <button class="btn btn-danger" (click)="handleRemove(i)"><i class="fa fa-close"></i></button>
+         <button class="btn btn-primary" (click)="handleCheck(i)"><i class="fa fa-check"></i></button>
+       </td>
+      </tr>
+    </table>
+   </div>
+   <div *ngIf="wrong" class="successful">
+    <div>
+      <div class="mb-4 text-danger">something went wrong! Try again </div>
+      <button type="button" (click)="handleError()">Okay</button>
+    </div>
+      </div>
+   <div *ngIf="success" class="successful">
+    <div>
+      <div class="mb-4 text-white">Payment made successfully! </div>
+      <button type="button" (click)="handleSuccess()">Okay</button>
+    </div>
+      </div>
+   <div *ngIf="service.myCart.length!=0" class="payment">
+    <span>AMOUNT:{{service.amount | currency}}</span><span>...for {{service.myCart.length}} product(s)</span>
+    <button
+     angular4-paystack
+    [key]="'pk_test_b151276bd6786f5c094f1c35d7ee0008f073fb2d'"
+    [email]="userEmail"
+    [amount]="service.amount*(560*100)"
+    [ref]="reference"
+    class="btn btn-primary"
+    (paymentInit)="paymentInit()"
+    (onClose)="paymentCancel()"
+    (callback)="paymentDone($event)"
+     >PAY</button>
+   </div>
+  
+ 
+ </div>
+ 

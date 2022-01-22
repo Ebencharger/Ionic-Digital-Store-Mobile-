@@ -16,7 +16,7 @@
      <div class="holder" *ngFor="let pro of service.client; let i=index">
        <button class="btn btn-danger myBtn" (click)="handleCart(i)"><i class="fa fa-cart-plus"></i></button>
        <button class="btn btn-danger myPrice">{{pro.price | currency}}</button>
-       <img src={{pro.image}} alt="">
+       <img src={{pro.img}} alt="">
        <button class="cart" (click)="handleInfo(i)">MORE INFO</button>
      </div>
    </div>

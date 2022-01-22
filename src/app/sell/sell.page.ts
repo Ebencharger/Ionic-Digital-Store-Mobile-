@@ -39,7 +39,7 @@ export class SellPage implements OnInit {
    }
    handleSuccess(){
      let {productName, price}=this.forms.value;
-    this.service.client.push({phone:productName, image:this.picture, price:price});
+    this.service.client.push({phone:productName, img:this.picture, price:price});
     this.route.navigate(['/client']);
    }
 
@@ -50,7 +50,6 @@ export class SellPage implements OnInit {
       encodingType: this.camera.EncodingType.JPEG,
       mediaType: this.camera.MediaType.PICTURE,
       correctOrientation: true,
-      allowEdit: true,
       saveToPhotoAlbum: true
     }
 

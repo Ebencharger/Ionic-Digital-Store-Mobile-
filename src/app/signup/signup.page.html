@@ -1,7 +1,13 @@
 <div class="body">
   <h5 class="login">Create account with Digital Store</h5>
   <p>Slide down the form for the remaining fields</p>
- <form class="form" [formGroup]="forms" novalidate (ngSubmit)="handleSubmit()">
+ <form class="form" [formGroup]="forms">
+  <div *ngIf="exist" class="successful">
+    <div>
+      <div class="mb-4 text-danger">You have created an account with Digital Store already!</div>
+      <button (click)="handleSuccess()">Okay</button>
+    </div>
+      </div>
   <div *ngIf="success" class="successful">
     <div>
       <div class="mb-4 text-white">Your form submitted successfully!</div>
@@ -45,7 +51,7 @@
       </div>
     </div>
    </div>
-   <button [disabled]="forms?.invalid">LOGIN</button>
+   <button type="submit" [disabled]="forms?.invalid" (click)="handleSubmit()">LOGIN</button>
   <div class="create" routerLink="/login">
     <hr>
     <div>Already have account? <span>Sign into Digital Store</span></div>

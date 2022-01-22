@@ -13,7 +13,7 @@ export class AppComponent {
   }
 
   ngOnInit() {
-    
+    // this.nativeStorage.remove('store');
   }
 }
 

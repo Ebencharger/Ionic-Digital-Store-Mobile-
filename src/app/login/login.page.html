@@ -4,15 +4,17 @@
   <div class="myBox">
     <span class="span">EMAIL:</span>
     <div>
-      <input type="text" class="form-group form-control-lg" placeholder="ENTER YOUR EMAIL" formControlName="email">
+      <input (input)="handleInput()" type="text" class="form-group form-control-lg" placeholder="ENTER YOUR EMAIL" formControlName="email">
       <div *ngIf="email?.invalid && email?.touched" class="text-danger font-weight-bold">{{valid}}</div>
+      <div *ngIf="emailError" class="text-danger font-weight-bold">Email doesn't exist!</div>
     </div>
   </div>
   <div class="myBox">
     <span class="span">PASSWORD:</span>
     <div>
-      <input type="text" class="form-group form-control-lg" placeholder="ENTER YOUR PASSWORD" formControlName="password">
+      <input (input)="handleInput2()" type="text" class="form-group form-control-lg" placeholder="ENTER YOUR PASSWORD" formControlName="password">
       <div *ngIf="password?.invalid && password?.touched" class="text-danger font-weight-bold">{{valid}}</div>
+      <div *ngIf="passwordError" class="text-danger font-weight-bold">Password doesn't exist</div>
     </div>
   </div>
   <button  [disabled]="forms?.invalid" (click)="handleSubmit()">LOGIN</button>

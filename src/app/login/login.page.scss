@@ -2,12 +2,15 @@
     width: 100%;
     height: 100vh;
     padding: 10%;
+    overflow-y: scroll;
     .login{
         text-align: center;
         margin-top: 40px;
     }
    .form{
        margin-top: 20%;
+       width: 100%;
+       height: 100vh;
      .alert{
         text-align: center;
          }

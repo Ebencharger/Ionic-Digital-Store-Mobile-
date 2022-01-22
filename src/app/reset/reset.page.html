@@ -1,12 +1,25 @@
 <div class="body">
   <h5 class="login">Reset Password</h5>
- <form class="form" [formGroup]="forms" novalidate (ngSubmit)="handleSubmit()">
+ <form class="form" [formGroup]="forms">
+  <div *ngIf="notReset" class="successful">
+    <div>
+      <div class="mb-4 text-danger">No Account found with the email you provided!</div>
+      <button (click)="handleSuccess()">Okay</button>
+    </div>
+      </div>
   <div *ngIf="success" class="successful">
     <div>
       <div class="mb-4 text-white">Your password reset successfully! Check your email</div>
       <button (click)="handleSuccess()">Okay</button>
     </div>
       </div>
+    <div class="myBox">
+      <span class="span">ACCOUNT EMAIL:</span>
+      <div>
+        <input type="text" (click)="handlemySet()" class="form-group form-control-lg" placeholder="Your account email" formControlName="email">
+        <div *ngIf="email?.invalid && email?.touched" class="text-danger font-weight-bold">{{valid}}</div>
+      </div>
+    </div>
     <div class="myBox">
       <span class="span">NEW PASSWORD:</span>
       <div>
@@ -22,7 +35,7 @@
         <div *ngIf="invalid" class="text-danger font-weight-bold">Password did not match</div>
       </div>
     </div>
-   <button [disabled]="forms?.invalid">Reset</button>
+   <button type="submit" [disabled]="forms?.invalid" (click)="handleSubmit()">Reset</button>
    <div class="fpass" routerLink="/signup">Create account</div>
   <div class="create" routerLink="/login">
     <hr>

@@ -25,20 +25,6 @@ export class HomePage {
       .then(
         data => {
           this.mStore=JSON.parse(data);
-          this.mStore[0].user[this.service.id].cart=this.service.cart;
-          this.mStore[0].client=this.service.client;
-          this.mStore[0].user[this.service.id].amount=this.service.amount;
-          this.mStore[0].user[this.service.id].myCart=this.service.myCart;
-          this.mStore[0].user[this.service.id].transaction=this.service.transaction;
-          this.nativeStorage.setItem('store', JSON.stringify(this.mStore));
-          setTimeout(() => {
-            this.service.cart=this.mStore[0].user[this.service.id].cart;
-            this.service.client=this.mStore[0].client;
-            this.service.amount=this.mStore[0].user[this.service.id].amount;
-            this.service.myCart=this.mStore[0].user[this.service.id].myCart;
-            this.service.transaction=this.mStore[0].user[this.service.id].transaction;
-          }, 10);
-          
         },
         error => console.error(error)
       );

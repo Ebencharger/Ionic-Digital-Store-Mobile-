@@ -1,6 +1,6 @@
 <div class="body">
   <h5 class="login">Sell your Product</h5>
- <form class="form" [formGroup]="forms" novalidate (ngSubmit)="handleSubmit()">
+ <form class="form" [formGroup]="forms">
   <div *ngIf="success" class="successful">
     <div>
       <div class="mb-4 text-white">Your product sent to Client Store successfully! Check Buy from Client Page</div>
@@ -33,7 +33,7 @@
         <div *ngIf="price?.invalid && price?.touched" class="text-danger font-weight-bold">{{valid}}</div>
       </div>
     </div>
-   <button [disabled]="forms?.invalid">SELL TO MARKET</button>
+   <button type="submit" [disabled]="forms?.invalid" (click)="handleSubmit()">SELL TO MARKET</button>
    <div class="fpass" routerLink="/store">Go to Store</div>
   <div class="create" routerLink="/client">
     <hr>

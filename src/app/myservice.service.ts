@@ -193,11 +193,11 @@ export class MyserviceService {
   wtk6 = '../assets/WATCHES/TRACKER/two.jpg';
   wtk7 = '../assets/WATCHES/TRACKER/one.jpg';
   myStore = ["PHONES", "LAPTOPS", "HOME DEVICES", "WATCHES"];
-  cart: any;
-  client: any;
-  amount: any;
-  myCart: any;
-  transaction: any;
+  cart: any=[];
+  client:any=[{ phone: "LAPTOP", img: this.sml4, price: Math.round(69200 / 560) }];
+  amount: any=0;
+  myCart: any=[];
+  transaction: any=[];
   id = 0;
   store = [
     [{
@@ -481,20 +481,31 @@ export class MyserviceService {
         .then(
           data => {
             this.mStore = JSON.parse(data);
-            this.cart = this.mStore[0].user[this.id].cart;
-            this.client = this.mStore[0].client;
-            this.amount = this.mStore[0].user[this.id].amount;
-            this.myCart = this.mStore[0].user[this.id].myCart;
-            this.transaction = this.mStore[0].user[this.id].transaction;
+            console.log("i am here");
+            if (this.mStore[0].user!="") {
+              this.mStore[0].user[this.id].cart=this.cart;
+              this.mStore[0].client=this.client;
+              this.mStore[0].user[this.id].amount=this.amount;
+              this.mStore[0].user[this.id].myCart=this.myCart;
+              this.mStore[0].user[this.id].transaction=this.transaction;
+              this.nativeStorage.setItem('store', JSON.stringify(this.mStore)); 
+             setTimeout(() => {
+              this.cart = this.mStore[0].user[this.id].cart;
+              this.client = this.mStore[0].client;
+              this.amount = this.mStore[0].user[this.id].amount;
+              this.myCart = this.mStore[0].user[this.id].myCart;
+              this.transaction = this.mStore[0].user[this.id].transaction;
+             }, 100);
+            }
           },
           error => {
-            console.error(error);
+            console.log("i am setting");
+            
             this.cart = [];
-            this.client = [{ phone: "WRIST WATCH", img: this.wfn1, price: Math.round(69200 / 560) }]
             this.amount=0;
             this.myCart = [];
             this.transaction = [];
-            this.mStore.push({cart:[], user:[]});
+            this.mStore=[{client:this.client, user:[{name:"Ajayi Oluwaseun Ebenezer", email:"ajayioluwaseunebenezer@gmail.com",phone:"08167302289", password:"Ebencharger22", location:"Ibadan, Oyo", cart:this.cart, myCart:this.myCart, amount:this.amount, transaction:this.transaction}]}];
             this.nativeStorage.setItem("store", JSON.stringify(this.mStore))
           }
         );

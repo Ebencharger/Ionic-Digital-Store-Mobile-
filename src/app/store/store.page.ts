@@ -15,9 +15,6 @@ export class StorePage implements OnInit {
   info=0;
   detail=false;
   constructor(public service:MyserviceService, private route:Router, private route2:ActivatedRoute) {
-    setTimeout(() => {
-      this.service.cart=this.service.cart;
-    }, 1000);
    }
   handleToggle(){
     this.menu=!this.menu;

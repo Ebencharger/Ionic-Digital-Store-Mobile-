@@ -61,6 +61,7 @@ export class CartPage implements OnInit {
    this.service.myCart=[];
   }
   handleError(){
+    this.wrong=false;
    this.route.navigate(['/cart']);
   }
 

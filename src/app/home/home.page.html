@@ -1,4 +1,10 @@
-<div class="home">
+<div class="body">
+  <div *ngIf="!server" class="server">
+     <div>
+      <p>Oops! You have lost internet connection. Please check!</p>
+      <button class="btn btn-light" (click)="closeServer()">Okay</button>
+     </div>
+   </div>
 <img src="../../assets/un.png" alt="">
 <div class="tag">
   <div class="mytext">
@@ -8,7 +14,7 @@
   <h1 class="text-primary">DIGITAL STORE</h1>
   </div>
 </div>
-<button (click)="handleToggle()"><i class="fa fa-bars text-primary"></i></button>
+<button [disabled]="!server" class="myBut" (click)="handleToggle()"><i class="fa fa-bars text-primary"></i></button>
 <div *ngIf="menu" class="menu">
   <div routerLink="/sell">SELL YOUR PRODUCT</div>
   <div routerLink="/store">GO TO STORE</div>
@@ -16,6 +22,6 @@
   <div routerLink="/cart">MY CART</div>
   <div routerLink="/transaction">MY TRANSACTION</div>
   <div routerLink="/help">CONTACT ADMIN FOR HELP</div>
-  <div routerLink="/login">LOG OUT</div>
+  <div routerLink="/login" (click)="handleLogOut()">LOG OUT</div>
 </div>
 </div>

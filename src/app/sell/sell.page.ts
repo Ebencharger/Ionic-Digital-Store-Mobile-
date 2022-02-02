@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { DomSanitizer } from '@angular/platform-browser';
 import { CameraOptions, Camera } from '@ionic-native/camera/ngx';
 import { MyserviceService } from '../myservice.service';
+import { NativeStorage } from '@ionic-native/native-storage/ngx';
 
 @Component({
   selector: 'app-sell',
@@ -16,9 +17,11 @@ export class SellPage implements OnInit {
   image=false;
   success=false;
   img: any;
+  mStore=[];
   public picture:any="";
   public folder:string;
-  constructor( private form:FormBuilder, private route:Router,private camera: Camera, private domSanitize: DomSanitizer, public service:MyserviceService) { }
+  server:any;
+  constructor( private form:FormBuilder, private route:Router,private camera: Camera, private domSanitize: DomSanitizer, public service:MyserviceService, private nativeStorage:NativeStorage) { }
   forms=this.form.group({productName:["", [Validators.required]], price:["", [Validators.required, Validators.pattern('^[0-9]{1,30}$')]]});
   get productName(){
     return this.forms.get('productName');
@@ -28,6 +31,12 @@ export class SellPage implements OnInit {
   }
 
   ngOnInit() {
+    setInterval(()=>{
+      this.server=this.service.server
+     }, 1000)
+    setInterval(()=>{
+      this.mStore=this.service.mStore;
+     }, 10)
   }
 
   handleSubmit(){
@@ -39,7 +48,8 @@ export class SellPage implements OnInit {
    }
    handleSuccess(){
      let {productName, price}=this.forms.value;
-    this.service.client.push({phone:productName, img:this.picture, price:price});
+     this.mStore[0].client.push({phone:productName, img:this.picture, price:price});
+     this.nativeStorage.setItem('store', JSON.stringify(this.mStore))
     this.route.navigate(['/client']);
    }
 
@@ -66,5 +76,7 @@ export class SellPage implements OnInit {
       return this.domSanitize.bypassSecurityTrustResourceUrl(image);
     }
     }
-
+    closeServer(){
+      this.server=true;
+    }
 }

@@ -1,4 +1,10 @@
 <div class="body">
+  <div *ngIf="!server" class="server">
+    <div>
+     <p>It seems you're not connected to the internet! Please check!</p>
+     <button class="btn btn-light" (click)="closeServer()">Okay</button>
+    </div>
+   </div>
   <h5 class="login">Reset Password</h5>
  <form class="form" [formGroup]="forms">
   <div *ngIf="notReset" class="successful">
@@ -23,7 +29,7 @@
     <div class="myBox">
       <span class="span">NEW PASSWORD:</span>
       <div>
-        <input type="text" (click)="handlemySet()" class="form-group form-control-lg" placeholder="8-30 characters" formControlName="password">
+        <input type="password" (click)="handlemySet()" class="form-group form-control-lg" placeholder="8-30 characters" formControlName="password">
         <div *ngIf="password?.invalid && password?.touched" class="text-danger font-weight-bold">{{valid}}</div>
         <div *ngIf="invalid" class="text-danger font-weight-bold">Password did not match</div>
       </div>
@@ -31,11 +37,12 @@
     <div class="myBox">
       <span class="span">RETYPE PASSWORD:</span>
       <div>
-        <input type="text" (click)="handlemySet()" class="form-group form-control-lg" placeholder="8-30 characters" formControlName="cpassword">
+        <input type="password" (click)="handlemySet()" class="form-group form-control-lg" placeholder="8-30 characters" formControlName="cpassword">
+        <div *ngIf="cpassword?.invalid && cpassword?.touched" class="text-danger font-weight-bold">{{valid}}</div>
         <div *ngIf="invalid" class="text-danger font-weight-bold">Password did not match</div>
       </div>
     </div>
-   <button type="submit" [disabled]="forms?.invalid" (click)="handleSubmit()">Reset</button>
+   <button type="submit" [disabled]="forms?.invalid && !server" (click)="handleSubmit()">Reset</button>
    <div class="fpass" routerLink="/signup">Create account</div>
   <div class="create" routerLink="/login">
     <hr>

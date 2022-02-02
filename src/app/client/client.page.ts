@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NativeStorage } from '@ionic-native/native-storage/ngx';
 import { MyserviceService } from '../myservice.service';
 
 @Component({
@@ -9,14 +10,19 @@ import { MyserviceService } from '../myservice.service';
 export class ClientPage implements OnInit {
   menu = false;
   detail=false;
+  mStore=[];
    info=0;
-  constructor(public service: MyserviceService) {
-    setTimeout(() => {
-      this.service.cart = this.service.cart;
-    }, 1000);
+  constructor(public service: MyserviceService, private nativeStorage:NativeStorage) {
+    // setTimeout(() => {
+    //   this.service.cart = this.service.cart;
+    // }, 1000);
   }
 
   ngOnInit() {
+    setInterval(()=>{
+      this.mStore=this.service.mStore;
+      this.service.client=this.mStore[0].client;
+     }, 10)
   }
 
   handleInfo(i:any){
@@ -29,7 +35,8 @@ export class ClientPage implements OnInit {
   }
 
   handleCart(i: any) {
-    this.service.cart.push(this.service.client[i]);
+    this.mStore[0].user[this.service.id].cart.push(this.mStore[0].client[i]);
+    this.nativeStorage.setItem('store', JSON.stringify(this.mStore))
   }
 
   handleOkay(){

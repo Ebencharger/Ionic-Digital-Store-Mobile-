@@ -1,4 +1,10 @@
 <div class="body">
+  <div *ngIf="!server" class="server">
+   <div>
+    <p>It seems you're not connected to the internet! Please check!</p>
+    <button class="btn btn-light" (click)="closeServer()">Okay</button>
+   </div>
+  </div>
   <h5 class="login">Create account with Digital Store</h5>
   <p>Slide down the form for the remaining fields</p>
  <form class="form" [formGroup]="forms">
@@ -14,44 +20,42 @@
       <button (click)="handleSuccess()">Okay</button>
     </div>
       </div>
-   <div class="scroll">
     <div class="myBox">
       <span class="span">FULL NAME:</span>
       <div>
-        <input type="text" class="form-group form-control-lg" placeholder="ENTER YOUR FULL NAME" formControlName="name">
+        <input type="text" class="form-group form-control-lg" placeholder="Example: Adam Smith Joshua" formControlName="name">
         <div *ngIf="name?.invalid && name?.touched" class="text-danger font-weight-bold">{{valid}}</div>
       </div>
     </div>
     <div class="myBox">
       <span class="span">EMAIL:</span>
       <div>
-        <input type="text" class="form-group form-control-lg" placeholder="ENTER YOUR EMAIL" formControlName="email">
+        <input type="text" class="form-group form-control-lg" placeholder="Example: adamsmith@gmail.com" formControlName="email">
         <div *ngIf="email?.invalid && email?.touched" class="text-danger font-weight-bold">{{valid}}</div>
       </div>
     </div>
     <div class="myBox">
       <span class="span">PHONE:</span>
       <div>
-        <input type="text" class="form-group form-control-lg" placeholder="ENTER YOUR PHONE NUMBER" formControlName="phone">
+        <input type="text" class="form-group form-control-lg" placeholder="Example: 08163646566" formControlName="phone">
         <div *ngIf="phone?.invalid && phone?.touched" class="text-danger font-weight-bold">{{valid}}</div>
       </div>
     </div>
     <div class="myBox">
       <span class="span">LOCATION:</span>
       <div>
-        <input type="text" class="form-group form-control-lg" placeholder="ENTER YOUR LOCATION" formControlName="location">
+        <input type="text" class="form-group form-control-lg" placeholder="Example: Ibadan, Oyo" formControlName="location">
         <div *ngIf="location?.invalid && location?.touched" class="text-danger font-weight-bold">{{valid}}</div>
       </div>
     </div>
     <div class="myBox">
       <span class="span">PASSWORD:</span>
       <div>
-        <input type="text" class="form-group form-control-lg" placeholder="8-30 characters" formControlName="password">
+        <input type="password" class="form-group form-control-lg" placeholder="8-30 characters" formControlName="password">
         <div *ngIf="password?.invalid && password?.touched" class="text-danger font-weight-bold">{{valid}}</div>
       </div>
-    </div>
    </div>
-   <button type="submit" [disabled]="forms?.invalid" (click)="handleSubmit()">LOGIN</button>
+   <button type="submit" [disabled]="forms?.invalid && !server" (click)="handleSubmit()">LOGIN</button>
   <div class="create" routerLink="/login">
     <hr>
     <div>Already have account? <span>Sign into Digital Store</span></div>

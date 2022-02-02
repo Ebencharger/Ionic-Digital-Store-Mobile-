@@ -1,4 +1,10 @@
 <div class="home">
+  <div *ngIf="!server" class="server">
+    <div>
+     <p>Oops! You have lost internet connection. Please check!</p>
+     <button class="btn btn-light" (click)="closeServer()">Okay</button>
+    </div>
+  </div>
   <div class="header">
    <div>
     <button routerLink="/home" class="button1">HOME</button>

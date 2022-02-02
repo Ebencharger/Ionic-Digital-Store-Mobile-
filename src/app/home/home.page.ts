@@ -11,6 +11,7 @@ import { MyserviceService } from '../myservice.service';
 export class HomePage {
   menu = false;
   mStore = [];
+  server:any;
   handleToggle() {
     this.menu = !this.menu;
   }
@@ -18,16 +19,25 @@ export class HomePage {
   }
 
   ngOnInit() {
+    setInterval(()=>{
+      this.server=this.service.server;
+     }, 1000)
     let id = this.route2.snapshot.paramMap.get('index');
     this.service.id=Number(id);
     setInterval(()=>{
-      this.nativeStorage.getItem('store')
-      .then(
-        data => {
-          this.mStore=JSON.parse(data);
-        },
-        error => console.error(error)
-      );
-    }, 1000)
+      this.mStore=this.service.mStore;
+      this.service.transaction=this.mStore[0].user[this.service.id].transaction;
+    }, 10)
    }
+   handleLogOut(){
+    // this.mStore[0].user[this.service.id].cart = this.service.cart;
+    // this.mStore[0].client = this.service.client;
+    // this.mStore[0].user[this.service.id].amount = this.service.amount;
+    // this.mStore[0].user[this.service.id].myCart = this.service.myCart;
+    // this.mStore[0].user[this.service.id].transaction = this.service.transaction;
+    // this.nativeStorage.setItem('store', JSON.stringify(this.mStore));
+   }
+   closeServer(){
+    this.server=true;
+  }
 }

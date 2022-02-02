@@ -13,6 +13,7 @@ import { MyserviceService } from '../myservice.service';
 export class LoginPage implements OnInit {
   valid = "Validate this field!";
   mStore = [];
+  server:any;
   seen = false;
   emailError = false;
   passwordError = false;
@@ -27,19 +28,17 @@ export class LoginPage implements OnInit {
   }
 
   ngOnInit() {
+    setInterval(()=>{
+      this.server=this.service.server;
+     }, 1000)
+
     this.platform.backButton.subscribeWithPriority(10000, () => {
       navigator['app'].exitApp();
     });
-    this.nativeStorage.getItem('store')
-      .then(
-        data => {
-          this.mStore = JSON.parse(data);
-          console.log(this.mStore);
-        },
-        error => {
-         this.mStore=this.service.mStore;
-        }
-      );
+   setInterval(()=>{
+    this.mStore=this.service.mStore;
+   }, 1000)
+   
   }
   handleSubmit() {
     let { email, password } = this.forms.value;
@@ -48,6 +47,7 @@ export class LoginPage implements OnInit {
         console.log(password, this.mStore[0].user[i].password);
         if (email == this.mStore[0].user[i].email && password == this.mStore[0].user[i].password) {
           this.seen = true;
+          this.service.email=this.mStore[0].user[i].email;
           this.route.navigate([`/home/${i}`]);
           setTimeout(() => {
             this.seen=false;
@@ -77,5 +77,8 @@ export class LoginPage implements OnInit {
   }
   handleInput2() {
     this.passwordError = false;
+  }
+  closeServer(){
+    this.server=true;
   }
 }

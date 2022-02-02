@@ -1,4 +1,10 @@
 <div class="body">
+  <div *ngIf="!server" class="server">
+    <div>
+     <p>Oops! You have lost internet connection. Please check!</p>
+     <button class="btn btn-light" (click)="closeServer()">Okay</button>
+    </div>
+  </div>
   <h5 class="login">Sell your Product</h5>
  <form class="form" [formGroup]="forms">
   <div *ngIf="success" class="successful">
@@ -33,7 +39,7 @@
         <div *ngIf="price?.invalid && price?.touched" class="text-danger font-weight-bold">{{valid}}</div>
       </div>
     </div>
-   <button type="submit" [disabled]="forms?.invalid" (click)="handleSubmit()">SELL TO MARKET</button>
+   <button type="submit" [disabled]="forms?.invalid && !server" (click)="handleSubmit()">SELL TO MARKET</button>
    <div class="fpass" routerLink="/store">Go to Store</div>
   <div class="create" routerLink="/client">
     <hr>

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NativeStorage } from '@ionic-native/native-storage/ngx';
+import { MyserviceService } from '../myservice.service';
 
 @Component({
   selector: 'app-reset',
@@ -12,10 +13,11 @@ export class ResetPage implements OnInit {
   valid="Validate this field!";
   invalid=false;
   success=false;
+  server:any;
   notReset=false;
   seen=false;
   mStore=[];
-  constructor( private form:FormBuilder, private route:Router, private nativeStorage:NativeStorage) { }
+  constructor( private form:FormBuilder, private route:Router, private nativeStorage:NativeStorage, public service:MyserviceService) { }
   forms=this.form.group({email:["", [Validators.required, Validators.email]],password:["", [Validators.required, Validators.pattern('^[A-Za-z0-9]{8,30}$')]], cpassword:["", [Validators.required, Validators.pattern('^[A-Za-z0-9]{8,30}$')]]});
   get email(){
     return this.forms.get('email');
@@ -27,6 +29,9 @@ export class ResetPage implements OnInit {
     return this.forms.get('cpassword');
   }
   ngOnInit() {
+    setInterval(()=>{
+     this.server=this.service.server
+    }, 1000)
     this.nativeStorage.getItem('store')
     .then(
       data => 
@@ -70,5 +75,8 @@ export class ResetPage implements OnInit {
   handlemySet(){
     this.invalid=false;
     this.notReset=false;
+  }
+  closeServer(){
+    this.server=true;
   }
 }

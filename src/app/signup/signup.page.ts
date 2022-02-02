@@ -13,6 +13,7 @@ export class SignupPage implements OnInit {
   valid="Validate this field!";
   success=false;
   mStore=[];
+  server:any;
   seen=false;
   exist=false;
   constructor(private form:FormBuilder, private route:Router, private nativeStorage:NativeStorage, public service:MyserviceService) { }
@@ -33,6 +34,9 @@ export class SignupPage implements OnInit {
     return this.forms.get('password');
   }
   ngOnInit() {
+    setInterval(()=>{
+     this.server=this.service.server;
+    }, 1000)
     this.nativeStorage.getItem('store')
     .then(
       data =>{
@@ -60,7 +64,9 @@ export class SignupPage implements OnInit {
           this.mStore[0].user.push({name:name, email:email,phone:phone, password:password, location:location, cart:[], myCart:[], amount:0, transaction:[]});
           this.nativeStorage.setItem('store', JSON.stringify(this.mStore))
         .then(
-          () => console.log(this.mStore[0])
+          () => {
+
+          }
           ,
           error => console.error('Error storing item', error)
         );
@@ -71,7 +77,9 @@ export class SignupPage implements OnInit {
       this.mStore[0].user.push({name:name, email:email,phone:phone, password:password, location:location, cart:[], myCart:[], amount:0, transaction:[]});
           this.nativeStorage.setItem('store', JSON.stringify(this.mStore))
         .then(
-          () => console.log(this.mStore[0])
+          () => {
+
+          }
           ,
           error => console.error('Error storing item', error)
         );
@@ -81,5 +89,8 @@ export class SignupPage implements OnInit {
   }
   handleSuccess(){
     this.route.navigate(['/login']);
+  }
+  closeServer(){
+    this.server=true;
   }
 }
